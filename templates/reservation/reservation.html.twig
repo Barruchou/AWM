@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation{% endblock %}
+{% block title %}Reservations{% endblock %}
 
 {% block body %}
-    <h1>Reservation</h1>
-
-    {{ form_start(reservationForm) }}
-        {{ form_row(reservationForm.session) }}
-
-        <button class="btn">Book it !</button>
-    {{ form_end(reservationForm) }}
+    <h1>Mes reservations</h1>
+    {% for reservation in reservationsList %}
+        <p>{{ reservation.id }}</p>
+{#            <a class="btn" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Supprimer</a>#}
+    {% endfor %}
 {% endblock %}
