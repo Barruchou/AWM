@@ -133,4 +133,8 @@ class Session
 
         return $this;
     }
+
+    public function __toString() {
+        return (string) $this->movie." - ".$this->room." - ".$this->startedAt->format('H:i (y/m/d)');
+    }
 }
