@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Form\ReservationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +30,7 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('reservationSummary', ['id' => $reservation->getId()]);
         }
 
         return $this->render('reservation/reserve.html.twig', [
@@ -51,17 +52,33 @@ class ReservationController extends AbstractController
         ));
     }
 
-//    /**
-//     * @Route("/deleteReservation/{id}", name="deleteReservation")
-//     * @ParamConverter("id", class=Task::class)
-//     * @param Reservation $reservation
-//     * @param EntityManagerInterface $entityManager
-//     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-//     */
-//    public function deleteReservation(Reservation $reservation, EntityManagerInterface $entityManager)
-//    {
-//        $entityManager->remove($reservation);
-//        $entityManager->flush();
-//        return $this->redirectToRoute('app_reservation');
-//    }
+    /**
+     * @Route("/deleteReservation/{id}", name="deleteReservation")
+     * @ParamConverter("id", class=Reservation::class)
+     * @param Reservation $reservation
+     * @param EntityManagerInterface $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteReservation(Reservation $reservation, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_reservation');
+    }
+
+    /**
+     * @Route("/reservationSummary/{id}", name="reservationSummary")
+     * @ParamConverter("id", class=Reservation::class)
+     * @param Reservation $reservation
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function getReservationById(Reservation $reservation, EntityManagerInterface $entityManager)
+    {
+        $reservation = $entityManager->getRepository(Reservation::class)->find($reservation);
+
+        return $this->render('reservation/summary.html.twig', array(
+            'reservation' => $reservation
+        ));
+    }
 }

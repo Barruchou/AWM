@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your reservation{% endblock %}
+
+{% block body %}
+    <h1>Your reservation summary</h1>
+    <p>{{ reservation.session }}</p>
+    <a class="btn" href="{{ path('home') }}">Home</a>
+{% endblock %}

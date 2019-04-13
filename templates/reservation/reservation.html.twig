@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Mes reservations</h1>
     {% for reservation in reservationsList %}
-        <p>{{ reservation.id }}</p>
-{#            <a class="btn" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Supprimer</a>#}
+        <p>{{ reservation.session }}</p>
+            <a class="btn" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Annuler</a>
     {% endfor %}
 {% endblock %}

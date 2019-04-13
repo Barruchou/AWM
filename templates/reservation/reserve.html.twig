@@ -4,10 +4,8 @@
 
 {% block body %}
     <h1>Reserve a session</h1>
-
     {{ form_start(reservationForm) }}
         {{ form_row(reservationForm.session) }}
-
         <button class="btn">Book it !</button>
     {{ form_end(reservationForm) }}
 {% endblock %}
