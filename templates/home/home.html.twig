@@ -3,8 +3,23 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Awesome Movies !</h1>
-    {% for movie in moviesList %}
-        <p>{{ movie.title }}</p>
-    {% endfor %}
+    <div>
+        <h1>Awesome Movies !</h1>
+    </div>
+    <div class="movie-container">
+        {% for movie in moviesList %}
+            <div class="movie-block">
+                <div class="poster-container">
+                    <h2 class="poster-title">{{ movie.title }}</h2>
+                    <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+                    <span class="poster-cover"></span>
+                </div>
+                <div class="description-container">
+                    <h2 class="description-title">{{ movie.title }}</h2>
+                    <p>{{ movie.synopsis }}</p>
+                </div>
+            </div>
+            <div class="movie-divider"></div>
+        {% endfor %}
+    </div>
 {% endblock %}
