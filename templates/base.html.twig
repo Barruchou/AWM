@@ -9,6 +9,17 @@
         {% endblock %}
     </head>
     <body>
+        <div class="nav-container">
+            <ul class="nav">
+                <li class="nav-element"><a href="{{ path('home') }}">Home</a></li>
+                <li class="nav-element"><a href="{{ path('reservation') }}">Reservations</a></li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-element"><a href="{{ path('app_logout') }}">LogOut</a></li>
+                 {% else %}
+                     <li class="nav-element"><a href="{{ path('app_login') }}">LogIn</a></li>
+                {% endif %}
+            </ul>
+        </div>
         <div class="header-container">
             <div class="header-text">
                 <h1 class="header-title">Awesome Movies!</h1>

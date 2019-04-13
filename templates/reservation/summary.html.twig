@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Your reservation{% endblock %}
+{% block title %}Your reservation summary{% endblock %}
 
 {% block body %}
-    <h1>Your reservation summary</h1>
-    <p>{{ reservation.session }}</p>
-    <a class="btn" href="{{ path('home') }}">Home</a>
+    <div class="page-title-container">
+        <h2>Your reservation summary</h2>
+    </div>
+    <div class="reservations-container">
+        <div class="reservation-block">
+            <span class="reservation">{{ reservation.session }}</span>
+            <a class="button" href="{{ path('home') }}">Back to home</a>
+        </div>
+    </div>
 {% endblock %}

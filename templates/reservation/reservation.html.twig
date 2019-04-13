@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservations{% endblock %}
+{% block title %}Your reservations{% endblock %}
 
 {% block body %}
-    <h1>Mes reservations</h1>
-    {% for reservation in reservationsList %}
-        <p>{{ reservation.session }}</p>
-            <a class="btn" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Annuler</a>
-    {% endfor %}
+    <div class="page-title-container">
+        <h2>Your reservations</h2>
+    </div>
+    <ul class="reservations-container">
+        {% for reservation in reservationsList %}
+            <li class="reservation-block">
+                <span class="reservation">{{ reservation.session }}</span>
+                <a class="button" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Cancel</a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

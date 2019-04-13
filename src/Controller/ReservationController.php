@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/reserve", name="app_reserve")
+     * @Route("/reserve", name="reserve")
      * @param Request $request
      * @return Response
      */
@@ -39,13 +39,13 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/reservation", name="app_reservation")
+     * @Route("/reservation", name="reservation")
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
     public function getReservations(EntityManagerInterface $entityManager)
     {
-        $reservations = $entityManager->getRepository(Reservation::class)->findAll();
+        $reservations = $entityManager->getRepository(Reservation::class)->findBy(["user" => $this->getUser()]);
 
         return $this->render('reservation/reservation.html.twig', array(
             'reservationsList' => $reservations
@@ -63,7 +63,7 @@ class ReservationController extends AbstractController
     {
         $entityManager->remove($reservation);
         $entityManager->flush();
-        return $this->redirectToRoute('app_reservation');
+        return $this->redirectToRoute('reservation');
     }
 
     /**
