@@ -6,7 +6,10 @@
     <div class="page-title-container">
         <h2>Your reservations</h2>
     </div>
-    <ul class="reservations-container">
+    {% if reservationsList is empty %}
+        <p class="info-message">Oops, you have no reservation</p>
+    {% else %}
+        <ul class="reservations-container">
         {% for reservation in reservationsList %}
             <li class="reservation-block">
                 <span class="reservation">{{ reservation.session }}</span>
@@ -14,4 +17,5 @@
             </li>
         {% endfor %}
     </ul>
+    {% endif %}
 {% endblock %}
