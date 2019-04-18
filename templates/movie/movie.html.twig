@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Awesome Movies!{% endblock %}
+
+{% block body %}
+    <div class="page-title-container">
+        <h2>Movie</h2>
+    </div>
+    <div class="movie-container">
+        <div class="movie-block">
+            <div class="poster-container" style="background-image: url({{ movie.poster }})">
+                <h3 class="poster-title">{{ movie.title }}</h3>
+                <img class="poster-image" src="{{ movie.poster }}" alt="{{ movie.title }}">
+                <span class="poster-cover"></span>
+            </div>
+            <div class="description-container">
+                <div class="description-main-informations">
+                    <h3 class="description-title">{{ movie.title }}</h3>
+                    <p>{{ movie.synopsis }}</p>
+                </div>
+                <ul class="description-more-informations">
+                    <li>Duration: <span class="description-duration">{{ movie.duration }}min</span></li>
+                    <li>Type: <span class="description-type">{{ movie.type }}</span></li>
+                    <li>Public restriction: <span class="description-restriction">{{ movie.publicRestriction }}</span></li>
+                    <li>
+                        Sessions:
+                        <ul class="description-sessions">
+                            {% for session in movie.sessions %}
+                                <li class="description-session">{{ session }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                <a class="button" href="{{ path('reserve') }}">Reserve</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

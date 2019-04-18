@@ -13,10 +13,13 @@
                     <h3 class="poster-title">{{ movie.title }}</h3>
                     <img class="poster-image" src="{{ movie.poster }}" alt="{{ movie.title }}">
                     <span class="poster-cover"></span>
+                    <a class="poster-link" href="{{ path('movie', {'id': movie.id}) }}"></a>
                 </div>
                 <div class="description-container">
                     <div class="description-main-informations">
-                        <h3 class="description-title">{{ movie.title }}</h3>
+                        <a href="{{ path('movie', {'id': movie.id}) }}">
+                            <h3 class="description-title">{{ movie.title }}</h3>
+                        </a>
                         <p>{{ movie.synopsis }}</p>
                     </div>
                     <ul class="description-more-informations">
