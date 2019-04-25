@@ -6,9 +6,13 @@
     <div class="page-title-container">
         <h2>Reserve a session</h2>
     </div>
+    {% if error != null %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
     <div class="form-container">
         {{ form_start(reservationForm) }}
             {{ form_row(reservationForm.session) }}
+            {{ form_row(reservationForm.seats) }}
             <button class="button">Book it !</button>
         {{ form_end(reservationForm) }}
     </div>

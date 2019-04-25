@@ -13,6 +13,7 @@
         {% for reservation in reservationsList %}
             <li class="reservation-block">
                 <span class="reservation">{{ reservation.session }}</span>
+                <span class="reservation">Seats : {{ reservation.seats }}</span>
                 <a class="button" href="{{ path('deleteReservation', {'id': reservation.id}) }}">Cancel</a>
             </li>
         {% endfor %}

@@ -28,6 +28,11 @@ class Reservation
      */
     private $session;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $seats;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,5 +64,17 @@ class Reservation
 
     public function __toString() {
         return (string) $this->session;
+    }
+
+    public function getSeats(): ?int
+    {
+        return $this->seats;
+    }
+
+    public function setSeats(int $seats): self
+    {
+        $this->seats = $seats;
+
+        return $this;
     }
 }

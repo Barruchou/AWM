@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Session;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ReservationFormType extends AbstractType
@@ -16,6 +17,7 @@ class ReservationFormType extends AbstractType
             'choice_label' => function ($session) {
                 return $session;
             }
-        ]);
+        ])
+        ->add('seats', NumberType::class);
     }
 }

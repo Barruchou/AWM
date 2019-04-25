@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
 use App\Entity\Reservation;
 use App\Form\ReservationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,26 +16,46 @@ class ReservationController extends AbstractController
 {
     /**
      * @Route("/reserve", name="reserve")
+     * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
      */
-    public function reserve(Request $request): Response
+    public function reserve(EntityManagerInterface $entityManager, Request $request): Response
     {
+        $error = null;
         $reservation = new Reservation();
         $form = $this->createForm(ReservationFormType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $reservation->setUser($this->getUser());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($reservation);
-            $entityManager->flush();
+            if($reservation->getSeats() > 0){
+                $roomSeats = $reservation->getSession()->getRoom()->getSeats();
+                $sessions = $entityManager->getRepository(Reservation::class)->findAll();
+                $reservedSeats = 0;
+                foreach ($sessions as $session){
+                    $reservedSeats += $session->getSeats();
+                }
+                if($roomSeats - $reservedSeats >= $reservation->getSeats()){
+                    $reservation->setUser($this->getUser());
+                    $reservation->setSeats($reservation->getSeats());
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($reservation);
+                    $entityManager->flush();
 
-            return $this->redirectToRoute('reservationSummary', ['id' => $reservation->getId()]);
+                    return $this->redirectToRoute('reservationSummary', ['id' => $reservation->getId()]);
+                }
+                else{
+                    $error = "There are only ". ($roomSeats - $reservedSeats)." seats left";
+                }
+            }
+            else{
+                $error = "You must pick a number of seats higher than 0";
+            }
         }
 
         return $this->render('reservation/reserve.html.twig', [
             'reservationForm' => $form->createView(),
+            'error' => $error
         ]);
     }
 

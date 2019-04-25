@@ -124,6 +124,12 @@ button, .button{
     transform: scale(0.8);
 }
 
+.error{
+    text-align: center;
+    color: darkred;
+    margin: 0 auto 30px auto;
+}
+
 .wrapper{
     display: block;
     max-width: 960px;
