@@ -130,6 +130,18 @@ button, .button{
     margin: 0 auto 30px auto;
 }
 
+.alert{
+    position: fixed;
+    bottom: calc(50px + 1.2rem);
+    right: 15px;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    max-width: 360px;
+    background-color: #14a37f;
+    color: #ffffff;
+}
+
 .wrapper{
     display: block;
     max-width: 960px;
@@ -150,7 +162,7 @@ button, .button{
 
 .nav{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -168,8 +180,8 @@ button, .button{
     position: relative;
     display: block;
     width: 100%;
-    min-height: 320px;
-    height: 50vh;
+    min-height: 280px;
+    height: 33.33vh;
     max-height: 640px;
     background-image: url("/img/3d-bowl-cinema.jpg");
     background-position: center;
@@ -399,4 +411,13 @@ button, .button{
 
 .info-message{
     text-align: center;
+}
+
+.footer-container{
+    display: block;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #14a37f;
 }

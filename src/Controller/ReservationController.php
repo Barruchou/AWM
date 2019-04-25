@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationController extends AbstractController
@@ -82,6 +83,8 @@ class ReservationController extends AbstractController
      */
     public function deleteReservation(Reservation $reservation, EntityManagerInterface $entityManager)
     {
+        $session = new Session();
+        $session->getFlashBag()->add('notice', 'Your reservation has been canceled.');
         $entityManager->remove($reservation);
         $entityManager->flush();
         return $this->redirectToRoute('reservation');
