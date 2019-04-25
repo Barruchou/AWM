@@ -5,6 +5,12 @@
 {% block body %}
     <div class="page-title-container">
         <h2>Movies</h2>
+        <div class="form-container form-inline scale-small">
+            {{ form_start(searchForm) }}
+            {{ form_row(searchForm) }}
+            <button class="button">Find it !</button>
+            {{ form_end(searchForm) }}
+        </div>
     </div>
     <div class="movie-container">
         {% for movie in moviesList %}

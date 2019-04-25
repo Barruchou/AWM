@@ -116,6 +116,14 @@ button, .button{
     cursor: pointer;
 }
 
+.scale-small{
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
 .wrapper{
     display: block;
     max-width: 960px;
@@ -336,12 +344,23 @@ button, .button{
     align-content: center;
 }
 
-.form-container > form > div{
+.form-container.form-inline > form{
+    flex-direction: row;
+    align-items: end;
+}
+
+.form-container > form > div,
+.form-container > form .button{
     margin: 0 0 15px 0;
 }
 
-.form-container > form .button{
-    margin-bottom: 15px;
+.form-container.form-inline > form > div,
+.form-container.form-inline > form .button{
+    margin: 0 15px 0 0;
+}
+
+.form-container.form-inline > form input{
+    width: auto;
 }
 
 .reservations-container{
