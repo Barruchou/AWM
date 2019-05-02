@@ -58,10 +58,10 @@ FROM session
 LEFT JOIN movie ON session.movie_id = movie.id;
 
 SELECT *
-FROM session
-RIGHT JOIN movie ON session.movie_id = movie.id;
+FROM user
+RIGHT JOIN reservation ON user.id = reservation.user_id;
 
 SELECT *
-FROM session
-FULL JOIN movie ON session.movie_id = movie.id
+FROM room
+FULL JOIN session on room.id = session.room_id
 
