@@ -27,8 +27,7 @@ ORDER BY title ASC;
 
 SELECT *
 FROM movie
-WHERE release_date < '2019-12-31'
-  AND release_date > '2018-01-01';
+WHERE release_date BETWEEN '2018-01-01' AND '2019-12-31';
 
 SELECT *
 FROM user
