@@ -45,7 +45,7 @@ WHERE release_date < DATE('now', '-2 years')
 SELECT *, SUM(seats) as totalSeats
 FROM reservation
 GROUP BY user_id
-HAVING totalSeats > 2
+HAVING totalSeats > 2;
 
 SELECT *
 FROM session
